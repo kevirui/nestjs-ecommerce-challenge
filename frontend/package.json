@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3001",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "dev": "npx next dev -p 3001",
+    "build": "npx next build",
+    "start": "npx next start",
+    "lint": "npx eslint"
   },
   "dependencies": {
     "lucide-react": "^0.577.0",
@@ -25,6 +25,6 @@
     "typescript": "^5"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": "22.x"
   }
 }
