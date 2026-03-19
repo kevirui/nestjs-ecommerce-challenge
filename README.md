@@ -1,67 +1,79 @@
-# Ecommerce App with Nest.js and Postgres
+# NestJS E-Commerce Monorepo 🛒
 
-## Description
-This project is an ecommerce application built using Nest.js and Postgres. The focus is on writing clean, modular, and testable code, and following a well-organized project structure.
+Este proyecto es una aplicación de comercio electrónico (E-commerce) de alto rendimiento, construida sobre una arquitectura de monorepo utilizando **npm workspaces**. Implementa un backend robusto con NestJS y un frontend moderno con Next.js, comunicados en tiempo real mediante **Server-Sent Events (SSE)**.
 
-## Technology Stack
+## 🏗️ Estructura del Proyecto
 
-- Nest.js
-- PostgreSQL
-- TypeORM
-- Jest
+El monorepo está dividido en dos partes principales:
 
-## Getting Started
+- **`backend/`**: Servidor API construido con **NestJS**, **TypeORM** y **PostgreSQL**.
+- **`frontend/`**: Panel de control (Dashboard) construido con **Next.js 15+ (App Router)** y **Tailwind CSS v4**.
 
-To get started with this project, follow these steps:
+---
 
-- Clone this repository to your local machine.
-- navigate to the nestjs-ecommerce directory.
+## 🚀 Tecnologías Principales
 
-```bash 
-cd ./nestjs-ecommerce
-```
-- start postgres database.
+### Backend
+- **Framework:** NestJS
+- **Base de Datos:** PostgreSQL
+- **ORM:** TypeORM
+- **Comunicación:** Server-Sent Events (SSE) para actualizaciones en tiempo real.
+- **Eventos:** Desacoplamiento de módulos mediante `EventEmitter2`.
+- **Documentación:** Swagger UI (disponible en `/docs`).
 
-```bash
-docker-compose up -d
-```
+### Frontend
+- **Framework:** Next.js (React 19)
+- **Estilos:** Tailwind CSS v4
+- **Iconos:** Lucide React
+- **Estado/Datos:** Conexión nativa con EventSource para SSE.
 
-- install app dependencies.
+---
+
+## ⚙️ Configuración y Ejecución
+
+### Requisitos Previos
+1. Node.js (v18+)
+2. Docker & Docker Compose (para la base de datos)
+
+### Instalación
+Desde la raíz del proyecto, instala todas las dependencias:
 
 ```bash
 npm install
 ```
 
-- run database migrations.
+### Ejecución en Desarrollo
+Para iniciar tanto el backend como el frontend en modo watch:
 
 ```bash
-npm run migration:run
+npm run dev
 ```
-if you want to generate any future migration
+
+Esto ejecutará:
+- **Backend:** `http://localhost:3000`
+- **Frontend:** `http://localhost:3001`
+
+### Base de Datos
+El proyecto incluye un `docker-compose.yml` preconfigurado. Para levantar la base de datos (PostgreSQL en el puerto **5434**):
 
 ```bash
-npm run migration:generate --name=<migrationName>
+docker-compose up -d
 ```
 
-- run database seeders.
+---
 
-```bash
-npm run seed:run
-```
+## 🛠️ Comandos Útiles (desde la raíz)
 
-- start the applictaion.
+- `npm run dev`: Inicia backend y frontend simultáneamente.
+- `npm run backend:dev`: Inicia solo el backend.
+- `npm run frontend:dev`: Inicia solo el frontend.
 
-```bash
-npm run start:dev
-```
+---
 
-## Testing
-To run the tests, follow these steps:
-1. Install dependencies: `npm install`
-2. Run the tests: `npm run test`
+## 📈 Características Implementadas
+- **Eventos de Dominio:** Los módulos están desacoplados; por ejemplo, el registro de un usuario dispara un evento que es escuchado por otros módulos sin dependencias directas.
+- **Dashboard en Tiempo Real:** El frontend detecta automáticamente cambios en el backend (creación de productos, registros, etc.) sin necesidad de recargar la página.
+- **Validación E2E:** Soporte completo para flujos de prueba desde el controlador hasta la persistencia.
 
-## Contributing
-If you're interested in contributing to this project, please follow these guidelines:
-1. Fork the repository
-2. Make your changes
-3. Submit a pull request
+---
+*Desarrollado con ❤️ para demostrar patrones modernos de desarrollo web.*
