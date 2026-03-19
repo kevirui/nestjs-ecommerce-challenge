@@ -1,0 +1,59 @@
+services:
+  # --- BACKEND (NestJS) ---
+  - type: web
+    name: backend-ecommerce
+    env: node
+    plan: free
+    rootDir: .
+    buildCommand: npm install && npm run build -w backend
+    startCommand: npm run start:prod -w backend
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: DATABASE_HOST
+        fromDatabase:
+          name: ecommerce-db
+          property: host
+      - key: DATABASE_PORT
+        fromDatabase:
+          name: ecommerce-db
+          property: port
+      - key: DATABASE_NAME
+        fromDatabase:
+          name: ecommerce-db
+          property: database
+      - key: DATABASE_USER
+        fromDatabase:
+          name: ecommerce-db
+          property: user
+      - key: DATABASE_PASSWORD
+        fromDatabase:
+          name: ecommerce-db
+          property: password
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATABASE_ENTITIES
+        value: dist/**/*.entity.js
+
+  # --- FRONTEND (Next.js) ---
+  - type: web
+    name: frontend-ecommerce
+    env: node
+    plan: free
+    rootDir: .
+    buildCommand: npm install && npm run build -w frontend
+    startCommand: npm run start -w frontend
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        fromService:
+          type: web
+          name: backend-ecommerce
+          property: host
+
+databases:
+  - name: ecommerce-db
+    plan: free
+    databaseName: ecommercedb
+    user: hassan
