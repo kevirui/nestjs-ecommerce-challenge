@@ -39,20 +39,6 @@ services:
       - key: DATABASE_ENTITIES
         value: dist/**/*.entity.{ts,js}
 
-  # --- FRONTEND (Next.js) ---
-  - type: web
-    name: frontend-ecommerce
-    env: node
-    plan: free
-    rootDir: .
-    buildCommand: npm install --include=dev && npm run build -w frontend
-    startCommand: npm run start -w frontend
-    envVars:
-      - key: NODE_OPTIONS
-        value: --max-old-space-size=380
-      - key: NEXT_PUBLIC_API_URL
-        value: https://${backend-ecommerce.host}
-
 databases:
   - name: ecommerce-db
     plan: free
