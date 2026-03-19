@@ -5,7 +5,7 @@ services:
     env: node
     plan: free
     rootDir: .
-    buildCommand: npm install && npm run build -w backend
+    buildCommand: npm install --include=dev && npm run build -w backend
     startCommand: npm run start:prod -w backend
     envVars:
       - key: NODE_ENV
@@ -43,7 +43,7 @@ services:
     env: node
     plan: free
     rootDir: .
-    buildCommand: npm install && npm run build -w frontend
+    buildCommand: npm install --include=dev && npm run build -w frontend
     startCommand: npm run start -w frontend
     envVars:
       - key: NEXT_PUBLIC_API_URL
