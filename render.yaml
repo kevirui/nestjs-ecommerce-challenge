@@ -10,6 +10,8 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: NODE_OPTIONS
+        value: --max-old-space-size=450
       - key: PORT
         value: 3000
       - key: DATABASE_HOST
@@ -46,11 +48,10 @@ services:
     buildCommand: npm install --include=dev && npm run build -w frontend
     startCommand: npm run start -w frontend
     envVars:
+      - key: NODE_OPTIONS
+        value: --max-old-space-size=450
       - key: NEXT_PUBLIC_API_URL
-        fromService:
-          type: web
-          name: backend-ecommerce
-          property: host
+        value: https://${backend-ecommerce.host}
 
 databases:
   - name: ecommerce-db
