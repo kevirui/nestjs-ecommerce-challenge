@@ -6,10 +6,12 @@ services:
     plan: free
     rootDir: .
     buildCommand: npm install --include=dev && npm run build -w backend
-    startCommand: npm run start:prod -w backend
+    startCommand: npm run seed:run -w backend && npm run start:prod -w backend
     envVars:
       - key: NODE_ENV
         value: production
+      - key: NODE_VERSION
+        value: 20
       - key: NODE_OPTIONS
         value: --max-old-space-size=400
       - key: PORT
