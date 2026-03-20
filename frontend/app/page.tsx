@@ -143,7 +143,10 @@ export default function Home() {
       });
       const json = await res.json();
       if (res.ok) {
-        showToast(`Usuario ${registerEmail} registrado exitosamente`, "success");
+        showToast(
+          `Usuario ${registerEmail} registrado exitosamente`,
+          "success",
+        );
         setRegisterEmail("");
         setRegisterPassword("");
         setShowRegisterForm(false);
@@ -382,7 +385,9 @@ export default function Home() {
             ) : (
               <>
                 <button
-                  onClick={() => setShowCreateProductForm(!showCreateProductForm)}
+                  onClick={() =>
+                    setShowCreateProductForm(!showCreateProductForm)
+                  }
                   className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 hover:from-blue-500/30 hover:to-cyan-500/30 border border-blue-500/30 rounded-xl text-blue-300 text-sm font-medium transition-all duration-200 cursor-pointer"
                 >
                   <PlusCircle size={16} />
@@ -633,12 +638,8 @@ export default function Home() {
                                 title="Activar producto"
                                 className="p-2 hover:bg-emerald-500/10 rounded-lg text-emerald-500 transition-colors cursor-pointer disabled:opacity-50"
                               >
-                                {actionLoading ===
-                                `activate-${product.id}` ? (
-                                  <Loader2
-                                    className="animate-spin"
-                                    size={14}
-                                  />
+                                {actionLoading === `activate-${product.id}` ? (
+                                  <Loader2 className="animate-spin" size={14} />
                                 ) : (
                                   <Power size={14} />
                                 )}
@@ -653,10 +654,7 @@ export default function Home() {
                               className="p-2 hover:bg-red-500/10 rounded-lg text-red-400 transition-colors cursor-pointer disabled:opacity-50"
                             >
                               {actionLoading === `delete-${product.id}` ? (
-                                <Loader2
-                                  className="animate-spin"
-                                  size={14}
-                                />
+                                <Loader2 className="animate-spin" size={14} />
                               ) : (
                                 <Trash2 size={14} />
                               )}
@@ -691,9 +689,7 @@ export default function Home() {
                       className="mx-auto mb-3 text-slate-600"
                       size={32}
                     />
-                    <p className="text-sm">
-                      Esperando eventos del servidor...
-                    </p>
+                    <p className="text-sm">Esperando eventos del servidor...</p>
                     <p className="text-xs mt-1 text-slate-600">
                       Realizá una acción para ver los eventos aquí.
                     </p>
@@ -704,7 +700,7 @@ export default function Home() {
                       <div
                         key={`${ev.timestamp}-${i}`}
                         className={`p-3.5 rounded-xl border transition-all duration-300 ${getEventColor(
-                          ev.type
+                          ev.type,
                         )}`}
                       >
                         <div className="flex items-center justify-between mb-2">
@@ -744,8 +740,9 @@ export default function Home() {
               />
               <span>
                 <strong className="text-slate-300">Consumo REST:</strong> El
-                frontend consume <code className="text-blue-400">GET /product</code> y
-                muestra datos existentes del backend.
+                frontend consume{" "}
+                <code className="text-blue-400">GET /product</code> y muestra
+                datos existentes del backend.
               </span>
             </div>
             <div className="flex items-start gap-2">
@@ -767,8 +764,8 @@ export default function Home() {
               />
               <span>
                 <strong className="text-slate-300">E2E desde UI:</strong>{" "}
-                Registro, login, creación, activación y eliminación de
-                productos directamente desde el dashboard.
+                Registro, login, creación, activación y eliminación de productos
+                directamente desde el dashboard.
               </span>
             </div>
           </div>
