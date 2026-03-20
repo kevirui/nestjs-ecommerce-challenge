@@ -28,7 +28,7 @@ export class ProductController {
     return this.productService.getProduct(product.id);
   }
 
-  @Auth(RoleIds.Admin, RoleIds.Merchant)
+  @Auth(RoleIds.Admin, RoleIds.Merchant, RoleIds.Customer)
   @ApiBearerAuth()
   @Post('create')
   @ApiOperation({ summary: 'Create a new product' })
@@ -40,7 +40,7 @@ export class ProductController {
     return this.productService.createProduct(body, user.id);
   }
 
-  @Auth(RoleIds.Admin, RoleIds.Merchant)
+  @Auth(RoleIds.Admin, RoleIds.Merchant, RoleIds.Customer)
   @ApiBearerAuth()
   @Post(':id/details')
   @ApiOperation({ summary: 'Add details to a product' })
@@ -53,7 +53,7 @@ export class ProductController {
     return this.productService.addProductDetails(product.id, body, user.id);
   }
 
-  @Auth(RoleIds.Admin, RoleIds.Merchant)
+  @Auth(RoleIds.Admin, RoleIds.Merchant, RoleIds.Customer)
   @ApiBearerAuth()
   @Post(':id/activate')
   @ApiOperation({ summary: 'Activate a product' })
@@ -65,7 +65,7 @@ export class ProductController {
     return this.productService.activateProduct(product.id, user.id);
   }
 
-  @Auth(RoleIds.Admin, RoleIds.Merchant)
+  @Auth(RoleIds.Admin, RoleIds.Merchant, RoleIds.Customer)
   @ApiBearerAuth()
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a product' })
