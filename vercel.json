@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "installCommand": "npm ci && npm install --no-save --platform=linuxmusl --arch=x64 lightningcss",
+  "installCommand": "npm install",
   "buildCommand": "npm run build -w frontend",
   "outputDirectory": "frontend/.next",
   "framework": "nextjs"
